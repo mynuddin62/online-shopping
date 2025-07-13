@@ -6,7 +6,6 @@ It serves as a **real-world simulation** of an e-commerce system and is designed
 
 
 ## 🎯 Key Learning Objectives
-
 ### Web Technologies
 - Understanding HTTP protocol, methods (`GET`, `POST`, etc.), and concepts like **URI vs URL**
 - Lifecycle and usage of **Servlets** and `@WebServlet`
@@ -88,7 +87,6 @@ src/
    ```
 
 ## 👨‍💻 Author
-
 **Mynuddin**  
 Software Engineer (Java) | FullStack web developer | Report Designer  
 📬 Passionate about mastering Java Web Technologies
