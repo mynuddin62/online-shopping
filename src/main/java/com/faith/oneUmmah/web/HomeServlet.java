@@ -28,6 +28,10 @@ public class HomeServlet extends HttpServlet {
         List<ProductDTO> allProducts = productService.findAllProductSortedByName();
         LOGGER.info("Total Product Found {}", allProducts.size());
 
+        /*for(int i = 0; i < 1_000; i++){
+            LOGGER.info("dummy log");
+        }*/
+
         req.setAttribute("products", allProducts);
         req.getRequestDispatcher("WEB-INF/home.jsp").forward(req,res);
     }
