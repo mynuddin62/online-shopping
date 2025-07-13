@@ -1,17 +1,27 @@
-<%--
-  User: ratul
-  Date: 13/07/2025
-  Time: 11:57 am
---%>
-<%@ page import="com.faith.oneUmmah.dto.ProductDTO" %>
-<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+
+
 <html>
 <head>
     <title>All Products</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 60%;
+        }
+        th, td {
+            padding: 8px;
+            border: 1px solid #ccc;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
 </head>
 <body>
-<% List<ProductDTO> products = (List<ProductDTO>) request.getAttribute("products");%>
+
+<h2>All Products</h2>
 
 <table>
     <thead>
@@ -21,14 +31,16 @@
         <th>Price</th>
     </tr>
     </thead>
-
-    <% for(ProductDTO product: products) {%>
-    <tr>
-        <td><%= product.getName()%></td>
-        <td><%= product.getDescription()%></td>
-        <td><%= product.getPrice()%></td>
-    </tr>
-    <%}%>
+    <tbody>
+    <c:forEach var="product" items="${products}">
+        <tr>
+            <td>${product.name}</td>
+            <td>${product.description}</td>
+            <td>${product.price}</td>
+        </tr>
+    </c:forEach>
+    </tbody>
 </table>
+
 </body>
 </html>

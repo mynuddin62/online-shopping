@@ -25,6 +25,18 @@
       <scope>provided</scope>
     </dependency>
 
+    <dependency>
+      <groupId>jakarta.servlet.jsp.jstl</groupId>
+      <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
+      <version>3.0.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.glassfish.web</groupId>
+      <artifactId>jakarta.servlet.jsp.jstl</artifactId>
+      <version>3.0.1</version>
+    </dependency>
+
     <!-- JUnit 5 (JUnit Jupiter) -->
     <dependency>
       <groupId>org.junit.jupiter</groupId>
@@ -49,7 +61,7 @@
       <scope>test</scope>
     </dependency>
 
-    <!-- Assertions with AssertJ (optional but highly recommended) -->
+    <!-- Assertions with AssertJ -->
     <dependency>
       <groupId>org.assertj</groupId>
       <artifactId>assertj-core</artifactId>
