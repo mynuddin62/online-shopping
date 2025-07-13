@@ -2,7 +2,6 @@ package com.faith.oneUmmah.service;
 
 import com.faith.oneUmmah.dto.ProductDTO;
 import com.faith.oneUmmah.repository.ProductRepository;
-import org.assertj.core.api.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
