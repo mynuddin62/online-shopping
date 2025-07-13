@@ -19,7 +19,8 @@
                             <c:out value="${product.description}" />
                         </p>
                         <p class="card-text fw-bold">
-                            Price: <c:out value="${product.price}" /><b>৳</b>
+                            Price: <c:out value="${product.price}" />
+                            <b>&#x09F3;</b>
                         </p>
                     </div>
                     <div class="card-footer bg-transparent border-top-0">
