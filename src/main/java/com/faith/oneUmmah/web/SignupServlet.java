@@ -9,13 +9,11 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.validation.Validation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
-
-import static com.faith.oneUmmah.utility.CommonUtil.isNullOrEmpty;
-import static com.faith.oneUmmah.utility.CommonUtil.isValidEmail;
 
 @WebServlet("/signup")
 public class SignupServlet extends HttpServlet {
@@ -58,28 +56,11 @@ public class SignupServlet extends HttpServlet {
     }
 
     private boolean isValid(UserDTO userDTO){
-        if(isNullOrEmpty(userDTO.getUsername()) || userDTO.getUsername().length() < 4 || userDTO.getUsername().length() > 32){
-            return false;
-        }
-
-        if(isValidEmail(userDTO.getEmail())  ){
-            return false;
-        }
-
-        if(isNullOrEmpty(userDTO.getPassword()) || userDTO.getPassword().length() < 3 ){
-            return false;
-        }
-
-        if(isNullOrEmpty(userDTO.getConfirmPassword()) || !userDTO.getConfirmPassword().equals(userDTO.getPassword())){
-            return false;
-        }
-
-        if(isNullOrEmpty(userDTO.getFirstName()) || isNullOrEmpty(userDTO.getLastName())){
-            return false;
-        }
-
-        return true;
+        return Validation
+                .buildDefaultValidatorFactory()
+                .getValidator()
+                .validate(userDTO)
+                .isEmpty();
     }
-
 
 }

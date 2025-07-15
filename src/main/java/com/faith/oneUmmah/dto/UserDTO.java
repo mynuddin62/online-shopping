@@ -1,11 +1,34 @@
 package com.faith.oneUmmah.dto;
 
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.Email;
+
 public class UserDTO {
+
+    @NotEmpty
+    @Size(min = 4, max = 32)
     private String username;
+
+    @NotEmpty
+    @Size(min = 3)
     private String password;
+
+    @NotEmpty
+    @Size(min = 3)
     private String confirmPassword;
+
+    @NotEmpty
+    @Size(min = 4)
+    @Email
     private String email;
+
+    @NotEmpty
+    @Size(min = 1)
     private String firstName;
+
+    @NotEmpty
+    @Size(min = 1)
     private String lastName;
 
     public String getUsername() {
