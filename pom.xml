@@ -37,6 +37,29 @@
       <version>3.0.1</version>
     </dependency>
 
+
+    <!-- Bean Validation API -->
+    <dependency>
+      <groupId>jakarta.validation</groupId>
+      <artifactId>jakarta.validation-api</artifactId>
+      <version>3.0.2</version>
+    </dependency>
+
+    <!-- Hibernate Validator Implementation -->
+    <dependency>
+      <groupId>org.hibernate.validator</groupId>
+      <artifactId>hibernate-validator</artifactId>
+      <version>8.0.1.Final</version>
+    </dependency>
+
+    <!-- EL API - required for constraint evaluation -->
+    <dependency>
+      <groupId>org.glassfish</groupId>
+      <artifactId>jakarta.el</artifactId>
+      <version>4.0.2</version>
+    </dependency>
+
+
     <dependency>
       <groupId>org.webjars.npm</groupId>
       <artifactId>bootstrap</artifactId>
