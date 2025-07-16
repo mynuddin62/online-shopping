@@ -1,4 +1,4 @@
-package com.faith.oneUmmah.utility;
+package com.faith.oneUmmah.util;
 
 public class CommonUtil {
 
