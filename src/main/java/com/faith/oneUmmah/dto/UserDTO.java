@@ -11,24 +11,23 @@ public class UserDTO {
     private String username;
 
     @NotEmpty
-    @Size(min = 3)
+    @Size(min = 3, max = 32)
     private String password;
 
     @NotEmpty
-    @Size(min = 3)
+    @Size(min = 3, max = 32)
     private String confirmPassword;
 
     @NotEmpty
-    @Size(min = 4)
     @Email
     private String email;
 
     @NotEmpty
-    @Size(min = 1)
+    @Size(min = 1, max = 32)
     private String firstName;
 
     @NotEmpty
-    @Size(min = 1)
+    @Size(min = 1, max = 32)
     private String lastName;
 
     public String getUsername() {
