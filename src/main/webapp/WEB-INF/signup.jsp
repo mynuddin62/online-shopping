@@ -17,6 +17,9 @@
                             <div id="usernameHelp" class="form-text">minimum 4 characters and maximum 32 characters</div>
                             <div class="valid-feedback">Looks good!</div>
                             <div class="invalid-feedback">Please choose a valid username.</div>
+                            <c:if test="${errors.username != null}">
+                                <small class="text-danger"> ${errors.username}</small>
+                            </c:if>
                         </div>
 
                         <!-- Email -->
@@ -26,15 +29,21 @@
                             <div id="emailHelp" class="form-text">We'll never share your email.</div>
                             <div class="valid-feedback">Looks good!</div>
                             <div class="invalid-feedback">Please provide a valid email address.</div>
+                            <c:if test="${errors.email != null}">
+                                <small class="text-danger"> ${errors.email}</small>
+                            </c:if>
                         </div>
 
                         <!-- Password -->
                         <div class="col-md-12">
                             <label for="password" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="password" name="password" minlength="3" required aria-describedby="passwordHelp" />
-                            <div id="passwordHelp" class="form-text">Minimum 3 characters</div>
+                            <input type="password" class="form-control" id="password" name="password" minlength="4" maxlength="32" required aria-describedby="passwordHelp" />
+                            <div id="passwordHelp" class="form-text">minimum 4 characters and maximum 32 characters</div>
                             <div class="valid-feedback">Looks good!</div>
-                            <div class="invalid-feedback">Password must be at least 3 characters.</div>
+                            <div class="invalid-feedback">minimum 4 characters and maximum 32 characters</div>
+                            <c:if test="${errors.password != null}">
+                                <small class="text-danger"> ${errors.password}</small>
+                            </c:if>
                         </div>
 
                         <!-- Confirm Password -->
@@ -44,22 +53,31 @@
                             <div id="confirmHelp" class="form-text">Must match the password</div>
                             <div class="valid-feedback">Passwords match!</div>
                             <div class="invalid-feedback">Passwords do not match.</div>
+                            <c:if test="${errors.confirmPassword != null}">
+                                <small class="text-danger"> ${errors.confirmPassword}</small>
+                            </c:if>
                         </div>
 
                         <!-- First Name -->
                         <div class="col-md-6">
                             <label for="firstName" class="form-label">First Name</label>
-                            <input class="form-control" id="firstName" name="firstName" required />
+                            <input class="form-control" id="firstName" name="firstName" minlength="4" maxlength="32" required />
                             <div class="valid-feedback">Looks good!</div>
-                            <div class="invalid-feedback">Please provide your first name.</div>
+                            <div class="invalid-feedback">minimum 4 characters and maximum 32 characters</div>
+                            <c:if test="${errors.firstName != null}">
+                                <small class="text-danger"> ${errors.firstName}</small>
+                            </c:if>
                         </div>
 
                         <!-- Last Name -->
                         <div class="col-md-6">
                             <label for="lastName" class="form-label">Last Name</label>
-                            <input class="form-control" id="lastName" name="lastName" required />
+                            <input class="form-control" id="lastName" name="lastName" minlength="4" maxlength="32" required />
                             <div class="valid-feedback">Looks good!</div>
-                            <div class="invalid-feedback">Please provide your last name.</div>
+                            <div class="invalid-feedback">minimum 4 characters and maximum 32 characters</div>
+                            <c:if test="${errors.lastName != null}">
+                                <small class="text-danger"> ${errors.lastName}</small>
+                            </c:if>
                         </div>
 
                         <!-- Submit Button -->

@@ -9,11 +9,15 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 @WebServlet("/signup")
 public class SignupServlet extends HttpServlet {
@@ -30,13 +34,15 @@ public class SignupServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         UserDTO userDTO = copyParametersTo(req);
+        Map<String, String> errors = validate(userDTO);
 
-        if(isValid(userDTO)){
+        if(errors.isEmpty()){
             LOGGER.info("user is valid, creating a new user with : {}", userDTO);
             userService.saveUser(userDTO);
             resp.sendRedirect("/home");
         } else {
             LOGGER.info("user is invalid, data : {}", userDTO);
+            req.setAttribute("errors", errors);
             req.getRequestDispatcher("/WEB-INF/signup.jsp").forward(req, resp);
         }
     }
@@ -61,6 +67,29 @@ public class SignupServlet extends HttpServlet {
                 .getValidator()
                 .validate(userDTO)
                 .isEmpty();
+    }
+
+    private Map<String, String> validate(UserDTO userDTO) {
+
+        Set<ConstraintViolation<UserDTO>> violations = Validation
+                .buildDefaultValidatorFactory()
+                .getValidator()
+                .validate(userDTO);
+
+        Map<String, String> errors = new HashMap<>();
+
+        for (ConstraintViolation<UserDTO> violation : violations) {
+            String path = violation.getPropertyPath().toString();
+
+            if(errors.containsKey(path)) {
+                errors.compute(path, (k, errorMassage) -> errorMassage + " <br/> " + violation.getMessage());
+                //errors.put(path, errorMassage + " <br/> "+ violation.getMessage());
+            }else{
+                errors.put(path, violation.getMessage());
+            }
+        }
+
+        return errors;
     }
 
 }
