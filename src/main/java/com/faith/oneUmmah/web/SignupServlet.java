@@ -4,6 +4,7 @@ import com.faith.oneUmmah.dto.UserDTO;
 import com.faith.oneUmmah.repository.UserRepositoryImpl;
 import com.faith.oneUmmah.service.UserService;
 import com.faith.oneUmmah.service.UserServiceImpl;
+import com.faith.oneUmmah.util.ValidationUtil;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -34,7 +35,7 @@ public class SignupServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         UserDTO userDTO = copyParametersTo(req);
-        Map<String, String> errors = validate(userDTO);
+        Map<String, String> errors = ValidationUtil.getInstance().validate(userDTO);
 
         if(errors.isEmpty()){
             LOGGER.info("user is valid, creating a new user with : {}", userDTO);
