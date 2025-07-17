@@ -24,7 +24,7 @@ import java.util.Set;
 public class SignupServlet extends HttpServlet {
     private static final Logger LOGGER = LoggerFactory.getLogger(SignupServlet.class);
 
-    private UserService userService = new UserServiceImpl(new UserRepositoryImpl());
+    private final UserService userService = new UserServiceImpl(new UserRepositoryImpl());
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {

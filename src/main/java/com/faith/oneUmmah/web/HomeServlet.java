@@ -19,7 +19,7 @@ import java.util.List;
 public class HomeServlet extends HttpServlet {
     private static final Logger LOGGER = LoggerFactory.getLogger(HomeServlet.class);
 
-    private ProductService productService = new ProductServiceImpl(new DummyProductRepositoryImpl());
+    private final ProductService productService = new ProductServiceImpl(new DummyProductRepositoryImpl());
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
