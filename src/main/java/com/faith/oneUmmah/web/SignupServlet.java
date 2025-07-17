@@ -40,16 +40,19 @@ public class SignupServlet extends HttpServlet {
         if(!errors.isEmpty()) {
             LOGGER.info("user is invalid, data : {}", userDTO);
             req.setAttribute("errors", errors);
+            req.setAttribute("userDTO", userDTO);
             req.getRequestDispatcher("/WEB-INF/signup.jsp").forward(req, resp);
         } else if(userService.isNotUniqueUsername(userDTO)) {
             LOGGER.info("Username : {} is already exist", userDTO.getUsername());
             errors.put("username", "Username is already exists. Please use different username");
             req.setAttribute("errors", errors);
+            req.setAttribute("userDTO", userDTO);
             req.getRequestDispatcher("/WEB-INF/signup.jsp").forward(req, resp);
         } else if(userService.isNotUniqueEmail(userDTO)) {
             LOGGER.info("Email : {} is already exist", userDTO.getEmail());
             errors.put("email", "Email is already exists. Please use different email");
             req.setAttribute("errors", errors);
+            req.setAttribute("userDTO", userDTO);
             req.getRequestDispatcher("/WEB-INF/signup.jsp").forward(req, resp);
         } else {
             LOGGER.info("user is valid, creating a new user with : {}", userDTO);
