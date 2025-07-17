@@ -37,16 +37,6 @@ public class SignupServlet extends HttpServlet {
         UserDTO userDTO = copyParametersTo(req);
         Map<String, String> errors = ValidationUtil.getInstance().validate(userDTO);
 
-        if(errors.isEmpty()){
-            LOGGER.info("user is valid, creating a new user with : {}", userDTO);
-            userService.saveUser(userDTO);
-            resp.sendRedirect("/home");
-        } else {
-            LOGGER.info("user is invalid, data : {}", userDTO);
-            req.setAttribute("errors", errors);
-            req.getRequestDispatcher("/WEB-INF/signup.jsp").forward(req, resp);
-        }
-
         if(!errors.isEmpty()) {
             LOGGER.info("user is invalid, data : {}", userDTO);
             req.setAttribute("errors", errors);
