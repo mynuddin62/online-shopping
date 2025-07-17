@@ -3,6 +3,10 @@ import com.faith.oneUmmah.dto.UserDTO;
 import com.faith.oneUmmah.domain.User;
 import com.faith.oneUmmah.repository.UserRepository;
 
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 public class UserServiceImpl implements UserService {
 
     private UserRepository userRepository;
@@ -35,7 +39,25 @@ public class UserServiceImpl implements UserService {
     }
 
     private String encryptPassword(String password){
-        // we will implement password encryption later
-        return password;
+        try {
+            var digester = MessageDigest.getInstance("SHA-256");
+            var bytes = digester.digest(password.getBytes(StandardCharsets.UTF_8));
+            return bytesToHex(bytes);
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException("Unable to encrypt password", e);
+        }
     }
+
+    private static String bytesToHex(byte[] hash) {
+        StringBuilder hexString = new StringBuilder();
+        for (byte b : hash) {
+            String hex = Integer.toHexString(0xff & b);
+            if (hex.length() == 1) {
+                hexString.append('0');
+            }
+            hexString.append(hex);
+        }
+        return hexString.toString();
+    }
+
 }
