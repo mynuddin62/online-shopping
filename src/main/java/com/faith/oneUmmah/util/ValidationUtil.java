@@ -26,9 +26,9 @@ public class ValidationUtil {
         return violations.stream()
                 .collect(
                         Collectors.toMap(
-                            violation -> violation.getPropertyPath().toString(),
-                            ConstraintViolation::getMessage,
-                            (errorMsg1, errorMsg2) -> (errorMsg1 + " <br/>" + errorMsg2)
+                                violation -> violation.getPropertyPath().toString(),
+                                ConstraintViolation::getMessage,
+                                (errorMsg1, errorMsg2) -> (errorMsg1 + " <br/>" + errorMsg2)
                         )
                 );
     }
