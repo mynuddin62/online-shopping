@@ -1,9 +1,16 @@
 package com.faith.oneUmmah.dto;
 
+import com.faith.oneUmmah.util.PasswordEqual;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 import jakarta.validation.constraints.Email;
 
+
+@PasswordEqual(
+        first = "password",
+        second = "confirmPassword",
+        message = "password and confirm password do not match"
+)
 public class UserDTO {
 
     @NotEmpty
@@ -11,11 +18,11 @@ public class UserDTO {
     private String username;
 
     @NotEmpty
-    @Size(min = 3, max = 32)
+    @Size(min = 4, max = 32)
     private String password;
 
     @NotEmpty
-    @Size(min = 3, max = 32)
+    @Size(min = 4, max = 32)
     private String confirmPassword;
 
     @NotEmpty
@@ -76,5 +83,17 @@ public class UserDTO {
 
     public void setConfirmPassword(String confirmPassword) {
         this.confirmPassword = confirmPassword;
+    }
+
+    @Override
+    public String toString() {
+        return "UserDTO{" +
+                "username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", confirmPassword='" + confirmPassword + '\'' +
+                ", email='" + email + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                '}';
     }
 }

@@ -63,7 +63,7 @@
                             <label for="firstName" class="form-label">First Name</label>
                             <input class="form-control" id="firstName" name="firstName" minlength="4" maxlength="32" required />
                             <div class="valid-feedback">Looks good!</div>
-                            <div class="invalid-feedback">minimum 4 characters and maximum 32 characters</div>
+                            <div class="invalid-feedback">minimum 1 character and maximum 32 characters</div>
                             <c:if test="${errors.firstName != null}">
                                 <small class="text-danger"> ${errors.firstName}</small>
                             </c:if>
@@ -74,7 +74,7 @@
                             <label for="lastName" class="form-label">Last Name</label>
                             <input class="form-control" id="lastName" name="lastName" minlength="4" maxlength="32" required />
                             <div class="valid-feedback">Looks good!</div>
-                            <div class="invalid-feedback">minimum 4 characters and maximum 32 characters</div>
+                            <div class="invalid-feedback">minimum 1 character and maximum 32 characters</div>
                             <c:if test="${errors.lastName != null}">
                                 <small class="text-danger"> ${errors.lastName}</small>
                             </c:if>
@@ -92,56 +92,56 @@
     </div>
 </div>
 
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        'use strict';
+<%--<script>--%>
+<%--    document.addEventListener("DOMContentLoaded", function () {--%>
+<%--        'use strict';--%>
 
-        const forms = document.querySelectorAll('.needs-validation');
-        const password = document.getElementById("password");
-        const confirmPassword = document.getElementById("confirmPassword");
+<%--        const forms = document.querySelectorAll('.needs-validation');--%>
+<%--        const password = document.getElementById("password");--%>
+<%--        const confirmPassword = document.getElementById("confirmPassword");--%>
 
-        // Password match validation
-        function validatePasswordMatch() {
-            if (confirmPassword.value === "") {
-                confirmPassword.classList.remove("is-valid", "is-invalid");
-                return;
-            }
+<%--        // Password match validation--%>
+<%--        function validatePasswordMatch() {--%>
+<%--            if (confirmPassword.value === "") {--%>
+<%--                confirmPassword.classList.remove("is-valid", "is-invalid");--%>
+<%--                return;--%>
+<%--            }--%>
 
-            if (password.value === confirmPassword.value) {
-                confirmPassword.classList.add("is-valid");
-                confirmPassword.classList.remove("is-invalid");
-            } else {
-                confirmPassword.classList.add("is-invalid");
-                confirmPassword.classList.remove("is-valid");
-            }
-        }
+<%--            if (password.value === confirmPassword.value) {--%>
+<%--                confirmPassword.classList.add("is-valid");--%>
+<%--                confirmPassword.classList.remove("is-invalid");--%>
+<%--            } else {--%>
+<%--                confirmPassword.classList.add("is-invalid");--%>
+<%--                confirmPassword.classList.remove("is-valid");--%>
+<%--            }--%>
+<%--        }--%>
 
-        // Live validation on password fields
-        password.addEventListener("input", validatePasswordMatch);
-        confirmPassword.addEventListener("input", validatePasswordMatch);
+<%--        // Live validation on password fields--%>
+<%--        password.addEventListener("input", validatePasswordMatch);--%>
+<%--        confirmPassword.addEventListener("input", validatePasswordMatch);--%>
 
-        // Custom Bootstrap validation
-        forms.forEach(function (form) {
-            form.addEventListener("submit", function (event) {
+<%--        // Custom Bootstrap validation--%>
+<%--        forms.forEach(function (form) {--%>
+<%--            form.addEventListener("submit", function (event) {--%>
 
-                // Prevent if form invalid
-                if (!form.checkValidity()) {
-                    event.preventDefault();
-                    event.stopPropagation();
-                }
+<%--                // Prevent if form invalid--%>
+<%--                if (!form.checkValidity()) {--%>
+<%--                    event.preventDefault();--%>
+<%--                    event.stopPropagation();--%>
+<%--                }--%>
 
-                // Extra check: password match
-                if (password.value !== confirmPassword.value) {
-                    event.preventDefault();
-                    confirmPassword.classList.add("is-invalid");
-                    confirmPassword.classList.remove("is-valid");
-                }
+<%--                // Extra check: password match--%>
+<%--                if (password.value !== confirmPassword.value) {--%>
+<%--                    event.preventDefault();--%>
+<%--                    confirmPassword.classList.add("is-invalid");--%>
+<%--                    confirmPassword.classList.remove("is-valid");--%>
+<%--                }--%>
 
-                form.classList.add("was-validated");
-            });
-        });
-    });
-</script>
+<%--                form.classList.add("was-validated");--%>
+<%--            });--%>
+<%--        });--%>
+<%--    });--%>
+<%--</script>--%>
 
 
 <%@include file="includes/footer.jsp"  %>
