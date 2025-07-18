@@ -3,7 +3,12 @@
 
 <div class="container mt-5">
     <div class="jumbotron text-center py-5">
-        <h1 class="display-4">Welcome to e-Shoppers!</h1>
+        <h1 class="display-4">
+            <c:if test="${sessionScope.user != null}">
+                Hello <c:out value="${sessionScope.user.firstName}" />,
+            </c:if>
+            Welcome to e-Shoppers!
+        </h1>
         <img src="<c:url value='/image/trolly-logo.png'/>" class="img-fluid" style="max-height: 200px; max-width: 200px" alt="Logo">
     </div>
 
