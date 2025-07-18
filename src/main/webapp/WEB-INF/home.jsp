@@ -1,11 +1,12 @@
 <%@include file="includes/header.jsp"  %>
 <%@include file="includes/navigation.jsp"  %>
+<%@ taglib prefix="oum" uri="oneummah/shoppers" %>
 
 <div class="container mt-5">
     <div class="jumbotron text-center py-5">
         <h1 class="display-4">
-            <c:if test="${sessionScope.user != null}">
-                Hello <c:out value="${sessionScope.user.firstName}" />,
+            <c:if test="${oum:isAuthenticated(pageContext.request)}">
+                Hello <c:out value="${oum:getCurrentUser(pageContext.request).firstName}" />,
             </c:if>
             Welcome to e-Shoppers!
         </h1>

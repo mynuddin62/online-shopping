@@ -6,13 +6,13 @@ import com.faith.oneUmmah.exception.UserNotFoundException;
 import com.faith.oneUmmah.repository.UserRepositoryImpl;
 import com.faith.oneUmmah.service.UserService;
 import com.faith.oneUmmah.service.UserServiceImpl;
+import com.faith.oneUmmah.util.SecurityContext;
 import com.faith.oneUmmah.util.ValidationUtil;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -50,20 +50,8 @@ public class LoginServlet extends HttpServlet {
 
 
     private void login(LoginDTO loginDTO, HttpServletRequest req) throws UserNotFoundException {
-        //get the old session and invalidate
-        HttpSession oldSession = req.getSession(false);
-        if(oldSession != null){
-            oldSession.invalidate();
-        }
-
-        //now verify the user
         User user = userService.verifyUser(loginDTO);
-
-        //put user in the session
-        HttpSession session = req.getSession(true);
-        session.setAttribute("user", user);
-
+        SecurityContext.login(req,user);
     }
-
 
 }
