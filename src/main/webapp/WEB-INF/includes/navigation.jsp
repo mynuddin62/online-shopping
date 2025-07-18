@@ -16,10 +16,19 @@
                 <li class="nav-item">
                     <c:choose>
                         <c:when test="${oum:isAuthenticated(pageContext.request)}">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="#" onclick="logout()">
                                 Logout
                                 [${oum:getCurrentUser(pageContext.request).username}]
                             </a>
+
+                            <script>
+                                function logout() {
+                                    document.getElementById("logoutForm").submit();
+                                }
+                            </script>
+                            <form id="logoutForm" style="visibility: hidden;" method="post" action="<c:url value='/logout'/>"></form>
+
+
                         </c:when>
                         <c:otherwise>
                             <a class="nav-link" href="<c:url value='/login'/>" >Login</a>
