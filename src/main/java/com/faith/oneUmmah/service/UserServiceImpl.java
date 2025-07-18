@@ -1,6 +1,8 @@
 package com.faith.oneUmmah.service;
+import com.faith.oneUmmah.dto.LoginDTO;
 import com.faith.oneUmmah.dto.UserDTO;
 import com.faith.oneUmmah.domain.User;
+import com.faith.oneUmmah.exception.UserNotFoundException;
 import com.faith.oneUmmah.repository.UserRepository;
 
 import java.nio.charset.StandardCharsets;
@@ -36,6 +38,20 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean isNotUniqueEmail(UserDTO user) {
         return userRepository.findByEmail(user.getEmail()).isPresent();
+    }
+
+    @Override
+    public User verifyUser(LoginDTO loginDTO) {
+        var user = userRepository.findByUserName(loginDTO.getUsername())
+                .orElseThrow(() -> new UserNotFoundException("Username or Password is incorrect"));
+
+        var encryptedPassword = encryptPassword(loginDTO.getPassword());
+
+        if(user.getPassword().equals(encryptedPassword)) {
+            return user;
+        }else {
+            throw new UserNotFoundException("Username or Password is incorrect");
+        }
     }
 
     private String encryptPassword(String password){
