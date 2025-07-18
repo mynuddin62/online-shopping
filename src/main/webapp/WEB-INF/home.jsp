@@ -1,6 +1,5 @@
 <%@include file="includes/header.jsp"  %>
 <%@include file="includes/navigation.jsp"  %>
-<%@ taglib prefix="oum" uri="oneummah/shoppers" %>
 
 <div class="container mt-5">
     <div class="jumbotron text-center py-5">
