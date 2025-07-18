@@ -6,6 +6,16 @@
         <div class="col-md-8 col-lg-6">
             <div class="card shadow-sm">
                 <div class="card-body">
+
+                    <!-- Alert Message -->
+                    <c:if test="${message != null}">
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                ${message}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    </c:if>
+
+
                     <h3 class="card-title text-center mb-4">Login</h3>
 
                     <!-- Login Form -->

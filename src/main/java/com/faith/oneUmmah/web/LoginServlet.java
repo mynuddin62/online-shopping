@@ -27,6 +27,11 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         LOGGER.info("Serving login Page");
+
+        if(Boolean.parseBoolean(req.getParameter("logout"))) {
+            req.setAttribute("message", "You have been successfully logged out.");
+        }
+
         req.getRequestDispatcher("WEB-INF/login.jsp").forward(req,res);
     }
 
