@@ -1,7 +1,7 @@
 package com.faith.oneUmmah.web;
 
 import com.faith.oneUmmah.dto.ProductDTO;
-import com.faith.oneUmmah.repository.DummyProductRepositoryImpl;
+import com.faith.oneUmmah.repository.ProductRepositoryImpl;
 import com.faith.oneUmmah.service.ProductService;
 import com.faith.oneUmmah.service.ProductServiceImpl;
 import jakarta.servlet.ServletException;
@@ -19,7 +19,7 @@ import java.util.List;
 public class HomeServlet extends HttpServlet {
     private static final Logger LOGGER = LoggerFactory.getLogger(HomeServlet.class);
 
-    private final ProductService productService = new ProductServiceImpl(new DummyProductRepositoryImpl());
+    private final ProductService productService = new ProductServiceImpl(new ProductRepositoryImpl());
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {

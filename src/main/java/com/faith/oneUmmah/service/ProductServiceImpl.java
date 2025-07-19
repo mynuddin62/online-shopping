@@ -1,5 +1,6 @@
 package com.faith.oneUmmah.service;
 
+import com.faith.oneUmmah.domain.Product;
 import com.faith.oneUmmah.dto.ProductDTO;
 import com.faith.oneUmmah.repository.ProductRepository;
 
@@ -19,7 +20,17 @@ public class ProductServiceImpl implements ProductService {
     public List<ProductDTO> findAllProductSortedByName() {
         return productRepository.findAllProducts()
                 .stream()
+                .map(this::convertToDTO)
                 .sorted(Comparator.comparing(ProductDTO::getName))
                 .collect(Collectors.toList());
+    }
+
+
+    private ProductDTO convertToDTO(Product product) {
+        return new ProductDTO(
+                product.getId(),
+                product.getName(),
+                product.getDescription(),
+                product.getPrice());
     }
 }

@@ -1,14 +1,14 @@
-package com.faith.oneUmmah.dto;
+package com.faith.oneUmmah.domain;
 
 import java.math.BigDecimal;
 
-public class ProductDTO {
+public class Product {
     private Long id;
     private String name;
     private String description;
     private BigDecimal price;
 
-    public ProductDTO(Long id, String name, String description, BigDecimal price) {
+    public Product(Long id, String name, String description, BigDecimal price) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -47,13 +47,5 @@ public class ProductDTO {
         this.price = price;
     }
 
-    @Override
-    public String toString() {
-        return "ProductDTO{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", price=" + price +
-                '}';
-    }
+
 }

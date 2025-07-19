@@ -1,5 +1,6 @@
 package com.faith.oneUmmah.service;
 
+import com.faith.oneUmmah.domain.Product;
 import com.faith.oneUmmah.dto.ProductDTO;
 import com.faith.oneUmmah.repository.ProductRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -13,21 +14,24 @@ import static org.mockito.Mockito.*;
 
 class ProductServiceImplTest {
 
-    private static final ProductDTO WEB_PROGRAMMING_BOOK
-            = new ProductDTO(
+    private static final Product WEB_PROGRAMMING_BOOK
+            = new Product(
+            1L,
             "Java Web Programming",
             "Book Of A N M Bazlur Rahman",
             BigDecimal.valueOf(480)
     );
 
-    private static final ProductDTO HONOR_SMART_WATCH
-            =new ProductDTO(
+    private static final Product HONOR_SMART_WATCH
+            =new Product(
+            2L,
             "Honor 5",
             "Smart Watch",
             BigDecimal.valueOf(3499));
 
-    private static final ProductDTO PNY_PENDRIVE
-            = new ProductDTO(
+    private static final Product PNY_PENDRIVE
+            = new Product(
+            3L,
             "PNY Pendrive",
             "64GB",
             BigDecimal.valueOf(1999));
@@ -44,7 +48,7 @@ class ProductServiceImplTest {
     @Test
     public void shouldReturnProductsSortedByName() {
 
-        List<ProductDTO> mockProducts = List.of(WEB_PROGRAMMING_BOOK, HONOR_SMART_WATCH, PNY_PENDRIVE);
+        List<Product> mockProducts = List.of(WEB_PROGRAMMING_BOOK, HONOR_SMART_WATCH, PNY_PENDRIVE);
         when(productRepository.findAllProducts()).thenReturn(mockProducts);
 
         // Act
