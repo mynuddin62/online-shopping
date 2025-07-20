@@ -4,6 +4,7 @@ import com.faith.oneUmmah.domain.Cart;
 import com.faith.oneUmmah.domain.CartItem;
 import com.faith.oneUmmah.domain.Product;
 import com.faith.oneUmmah.domain.User;
+import com.faith.oneUmmah.exception.CartItemNotFoundException;
 import com.faith.oneUmmah.exception.ProductNotFoundException;
 import com.faith.oneUmmah.repository.CartItemRepository;
 import com.faith.oneUmmah.repository.CartRepository;
@@ -31,17 +32,33 @@ public class CartServiceImpl implements CartService{
 
     @Override
     public void addProductToCart(String productId, Cart cart) {
+        Product product = findProduct(productId);
+
+        addProductToCart(product, cart);
+        updateCart(cart);
+
+    }
+
+    @Override
+    public void removeProductToCart(String productId, Cart cart) {
+        Product product = findProduct(productId);
+
+        removeProductToCart(product, cart);
+        updateCart(cart);
+    }
+
+    private Product findProduct(String productId) {
         if(productId == null || productId.isBlank()) {
             throw new IllegalArgumentException("Product id can not be null or blank");
         }
 
         Long id = parseProductId(productId);
 
-        Product product = productRepository.findById(id)
+        return productRepository.findById(id)
                 .orElseThrow(() -> new ProductNotFoundException("Product not found by id: " + id));
+    }
 
-        addProductToCart(product, cart);
-
+    private void updateCart(Cart cart) {
         Integer totalTotalItem = getTotalItem(cart);
         BigDecimal totalPrice = calculateTotalPrice(cart);
 
@@ -49,6 +66,24 @@ public class CartServiceImpl implements CartService{
         cart.setTotalPrice(totalPrice);
 
         cartRepository.update(cart);
+    }
+
+    private void removeProductToCart(Product product, Cart cart) {
+        Optional<CartItem> optionalCartItem = cart.getCartItems()
+                .stream().filter(cartItem -> cartItem.getProduct().equals(product))
+                .findAny();
+        CartItem cartItem = optionalCartItem
+                .orElseThrow(() -> new CartItemNotFoundException("Cart not found by product: " + product));
+
+        if(cartItem.getQuantity() > 1) {
+            cartItem.setQuantity(cartItem.getQuantity() - 1);
+            cartItem.setPrice(cartItem.getPrice().subtract(product.getPrice()));
+            cart.getCartItems().add(cartItem);
+            cartItemRepository.update(cartItem);
+        }else {
+            cart.getCartItems().remove(cartItem);
+            cartItemRepository.remove(cartItem);
+        }
     }
 
     private void addProductToCart(Product product, Cart cart) {
