@@ -42,7 +42,7 @@
                                 </span>
                                 </p>
                                 <p>
-                                    <a href="#" class="btn btn-success">
+                                    <a href="<c:url value='/checkout'/>" class="btn btn-success">
                                         Checkout
                                     </a>
                                 </p>
