@@ -2,6 +2,10 @@ package com.faith.oneUmmah.util;
 
 public class CommonUtil {
 
+    public static boolean isNotEmpty(String value) {
+        return !isNullOrEmpty(value);
+    }
+
     public static boolean isNullOrEmpty(String str) {
         return str == null || str.isEmpty();
     }
